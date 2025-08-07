@@ -1,0 +1,22 @@
+<div class="ticket-detail-container" *ngIf="!loading && ticket">
+  <h2>Ticket #{{ ticket.id }}: {{ ticket.title }}</h2>
+  <p><strong>Description:</strong> {{ ticket.description }}</p>
+  <p><strong>Status:</strong> {{ ticket.status }}</p>
+  <p><strong>Assignee:</strong>
+    <span *ngIf="ticket.assigneeId; else unassigned">
+      {{ getAssigneeName(ticket.assigneeId) }}
+    </span>
+    <ng-template #unassigned>-</ng-template>
+  </p>
+  <mat-form-field appearance="fill">
+    <mat-label>Assign User</mat-label>
+    <mat-select [(ngModel)]="selectedAssigneeId">
+      <mat-option *ngFor="let user of users" [value]="user.id">{{ user.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="assignUser()" [disabled]="updating || !selectedAssigneeId">Assign</button>
+  <button mat-raised-button color="accent" (click)="markComplete()" [disabled]="updating || ticket.status === 'completed'">Mark as Complete</button>
+  <button mat-button (click)="goBack()">Back to List</button>
+  <mat-progress-spinner *ngIf="updating" mode="indeterminate" diameter="30"></mat-progress-spinner>
+</div>
+<mat-progress-spinner *ngIf="loading" mode="indeterminate"></mat-progress-spinner>
