@@ -27,6 +27,8 @@ npm start
 ```
 
 Open your browser at [http://localhost:4200/tickets](http://localhost:4200/tickets)
+<img width="1918" height="750" alt="image" src="https://github.com/user-attachments/assets/a3637b4b-6437-465f-9db1-f40d01bd86fa" />
+
 
 ## Project Structure
 - `src/app/services/` — Hardcoded demo data for tickets and users
